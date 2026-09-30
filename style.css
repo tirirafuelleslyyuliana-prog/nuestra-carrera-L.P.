@@ -1,0 +1,1737 @@
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050505;
+    color: white;
+    overflow-x: hidden;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   PANTALLAS
+========================================================= */
+
+.pantalla {
+    min-height: 100vh;
+    width: 100%;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #2b1000 0%,
+            #0b0b0b 50%,
+            #000000 100%
+        );
+}
+
+.pantalla.activa {
+    display: flex;
+
+    animation:
+        aparecer 0.8s ease;
+}
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   TEXTURA GENERAL
+========================================================= */
+
+.pantalla::before {
+
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            135deg,
+            transparent 0,
+            transparent 40px,
+            rgba(255, 255, 255, 0.018) 41px,
+            transparent 42px
+        );
+
+    pointer-events: none;
+}
+
+.pantalla > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   TIPOGRAFÍA
+========================================================= */
+
+h1 {
+    font-size: clamp(2.3rem, 7vw, 5rem);
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    line-height: 1.05;
+
+    margin: 15px 0;
+
+    text-shadow:
+        0 0 15px rgba(255, 50, 0, 0.5);
+}
+
+h2 {
+
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+
+    color: #ff4219;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        0 0 12px rgba(255, 60, 0, 0.6);
+}
+
+.etiqueta {
+
+    font-size: 0.8rem;
+
+    letter-spacing: 5px;
+
+    color: #999;
+
+    margin-bottom: 10px;
+
+    font-weight: bold;
+}
+
+.descripcion {
+
+    max-width: 650px;
+
+    color: #aaa;
+
+    line-height: 1.7;
+
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   NÚMERO DE VUELTA
+========================================================= */
+
+.numero,
+.numero-vuelta {
+
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    font-size: 5rem;
+
+    font-weight: 900;
+
+    color: rgba(255, 60, 0, 0.08);
+
+    z-index: 1 !important;
+}
+
+
+/* =========================================================
+   PORTADA
+========================================================= */
+
+#inicio {
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #421600 0%,
+            #0b0807 45%,
+            #000 100%
+        );
+}
+
+.luces-pista {
+
+    position: absolute;
+
+    top: 12%;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 7px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #ff2600 0,
+            #ff2600 30px,
+            transparent 30px,
+            transparent 60px
+        );
+
+    box-shadow:
+        0 0 15px #ff2600,
+        0 0 35px #ff2600;
+
+    animation:
+        parpadeo 0.8s infinite alternate;
+}
+
+@keyframes parpadeo {
+
+    from {
+        opacity: 0.35;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+.logo-hotwheels {
+
+    font-size: clamp(2.3rem, 8vw, 5rem);
+
+    font-weight: 900;
+
+    font-style: italic;
+
+    letter-spacing: 4px;
+
+    color: #ff2600;
+
+    text-shadow:
+        3px 3px 0 white,
+        0 0 25px #ff2600;
+
+    margin-bottom: 15px;
+}
+
+
+.velocidad {
+
+    position: absolute;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 200px;
+
+    pointer-events: none;
+}
+
+.velocidad span {
+
+    position: absolute;
+
+    height: 2px;
+
+    background: #ff4a20;
+
+    box-shadow: 0 0 8px #ff2600;
+
+    animation:
+        velocidad 1.5s linear infinite;
+}
+
+.velocidad span:nth-child(1) {
+
+    width: 180px;
+    top: 30%;
+    left: -200px;
+
+}
+
+.velocidad span:nth-child(2) {
+
+    width: 280px;
+    top: 55%;
+    left: -300px;
+
+    animation-delay: 0.4s;
+
+}
+
+.velocidad span:nth-child(3) {
+
+    width: 120px;
+    top: 75%;
+    left: -150px;
+
+    animation-delay: 0.8s;
+
+}
+
+@keyframes velocidad {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(130vw);
+    }
+
+}
+
+
+.carro-inicio {
+
+    font-size: clamp(5rem, 18vw, 10rem);
+
+    filter:
+        drop-shadow(0 0 20px #ff2600);
+
+    animation:
+        entradaCarro 1.4s ease,
+        flotando 2s ease-in-out infinite alternate;
+}
+
+@keyframes entradaCarro {
+
+    from {
+        transform: translateX(-100vw);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+
+}
+
+@keyframes flotando {
+
+    from {
+        transform: translateX(-8px) rotate(-2deg);
+    }
+
+    to {
+        transform: translateX(8px) rotate(2deg);
+    }
+
+}
+
+.pequeno {
+
+    margin-top: 20px;
+
+    font-size: 0.8rem;
+
+    color: #999;
+
+    letter-spacing: 5px;
+}
+
+#inicio h1 {
+
+    font-size: clamp(3rem, 10vw, 7rem);
+
+    color: white;
+}
+
+#inicio h1 span {
+
+    color: #ff3514;
+
+    text-shadow:
+        0 0 25px #ff2600;
+}
+
+.subtitulo {
+
+    color: #ff542d;
+
+    font-size: 1.5rem;
+
+    font-weight: bold;
+}
+
+.intro {
+
+    max-width: 650px;
+
+    color: #ccc;
+
+    line-height: 1.8;
+
+    margin-top: 12px;
+
+    font-size: 1.05rem;
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+button {
+
+    margin-top: 30px;
+
+    padding: 16px 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff2600,
+            #ff5b00
+        );
+
+    color: white;
+
+    font-size: 0.95rem;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 0 15px rgba(255, 50, 0, 0.45),
+        inset 0 -3px rgba(0, 0, 0, 0.3);
+
+    transition: 0.25s ease;
+}
+
+button:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.05);
+
+    box-shadow:
+        0 0 28px rgba(255, 50, 0, 0.8),
+        inset 0 -3px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+
+    transform:
+        scale(0.96);
+}
+
+
+/* =========================================================
+   SEMÁFORO
+========================================================= */
+
+.semaforo-mini {
+
+    font-size: 2rem;
+
+    letter-spacing: 8px;
+
+    margin: 15px 0;
+}
+
+
+/* =========================================================
+   TEXTO / TARJETAS
+========================================================= */
+
+.texto {
+
+    width: min(850px, 95%);
+
+    padding: 30px;
+
+    margin-top: 25px;
+
+    background:
+        rgba(20, 20, 20, 0.85);
+
+    border:
+        1px solid rgba(255, 60, 20, 0.35);
+
+    border-radius: 15px;
+
+    line-height: 1.8;
+
+    box-shadow:
+        0 0 30px rgba(255, 40, 0, 0.1);
+}
+
+.texto p {
+
+    margin: 12px 0;
+
+    color: #ddd;
+}
+
+.resaltado {
+
+    color: #ff5b30 !important;
+
+    font-size: 1.2rem;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   PISTA
+========================================================= */
+
+.pista {
+
+    width: min(950px, 95%);
+
+    height: 140px;
+
+    margin: 30px 0;
+
+    position: relative;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #181818 0,
+            #181818 45px,
+            #101010 45px,
+            #101010 90px
+        );
+
+    border-top:
+        5px solid white;
+
+    border-bottom:
+        5px solid white;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+.meta {
+
+    position: absolute;
+
+    right: 20px;
+
+    top: 20px;
+
+    font-size: 4rem;
+}
+
+.carro-pista {
+
+    position: absolute;
+
+    left: -100px;
+
+    bottom: 15px;
+
+    font-size: 4rem;
+
+    animation:
+        carrera 4s linear infinite;
+}
+
+@keyframes carrera {
+
+    from {
+        left: -100px;
+    }
+
+    to {
+        left: 100%;
+    }
+
+}
+
+.linea-pista {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 4px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            white 0,
+            white 30px,
+            transparent 30px,
+            transparent 60px
+        );
+
+    opacity: 0.25;
+}
+
+
+/* =========================================================
+   COLECCIÓN DE TARJETAS
+========================================================= */
+
+.coleccion {
+
+    width: min(1000px, 95%);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-top: 30px;
+}
+
+.carta-momento {
+
+    position: relative;
+
+    min-height: 240px;
+
+    padding: 25px 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191919,
+            #0b0b0b
+        );
+
+    border:
+        1px solid #333;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    overflow: hidden;
+}
+
+.carta-momento::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background: #ff3b16;
+
+    box-shadow:
+        0 0 15px #ff2600;
+}
+
+.carta-momento:hover {
+
+    transform:
+        translateY(-10px)
+        rotate(-1deg);
+
+    border-color: #ff3b16;
+
+    box-shadow:
+        0 15px 35px rgba(255, 50, 0, 0.2);
+}
+
+.numero-carta {
+
+    position: absolute;
+
+    right: 15px;
+    top: 12px;
+
+    color: #555;
+
+    font-weight: 900;
+}
+
+.icono {
+
+    font-size: 3.2rem;
+
+    margin-top: 20px;
+
+    margin-bottom: 15px;
+}
+
+.carta-momento h3 {
+
+    color: #ff5832;
+
+    margin-bottom: 12px;
+
+    font-size: 1.2rem;
+}
+
+.carta-momento p {
+
+    color: #ccc;
+
+    line-height: 1.6;
+}
+
+.oculto {
+
+    display: none;
+}
+
+.carta-momento.abierta .oculto {
+
+    display: block;
+
+    animation:
+        aparecer 0.5s ease;
+}
+
+
+/* =========================================================
+   GARAJE
+========================================================= */
+
+.garaje {
+
+    width: min(800px, 95%);
+
+    height: 260px;
+
+    margin: 30px 0;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 2px solid #333;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #222 0%,
+            #111 70%,
+            #080808 70%
+        );
+
+    box-shadow:
+        inset 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.lampara {
+
+    position: absolute;
+
+    top: 25px;
+
+    left: 10%;
+
+    width: 80%;
+
+    height: 5px;
+
+    background: #ff4b1a;
+
+    box-shadow:
+        0 0 15px #ff4b1a,
+        0 0 35px #ff4b1a;
+}
+
+.herramientas {
+
+    position: absolute;
+
+    top: 65px;
+
+    width: 100%;
+
+    font-size: 1.5rem;
+
+    color: #777;
+}
+
+.carro-garaje {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 7rem;
+
+    filter:
+        drop-shadow(0 0 20px #ff2600);
+
+    animation:
+        garajeCarro 2s ease-in-out infinite alternate;
+}
+
+@keyframes garajeCarro {
+
+    from {
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateX(-50%)
+            translateY(-8px);
+    }
+
+}
+
+.especial {
+
+    border-color:
+        rgba(255, 70, 20, 0.6);
+}
+
+
+/* =========================================================
+   FICHA HOT WHEELS
+========================================================= */
+
+.ficha-carro {
+
+    width: min(900px, 95%);
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 25px;
+
+    margin-top: 30px;
+
+    align-items: center;
+}
+
+.caja-hotwheels {
+
+    min-height: 300px;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1d1d1d,
+            #090909
+        );
+
+    border:
+        2px solid #ff3514;
+
+    box-shadow:
+        0 0 30px rgba(255, 50, 0, 0.2);
+}
+
+.logo-caja {
+
+    font-size: 1.8rem;
+
+    font-weight: 900;
+
+    font-style: italic;
+
+    color: #ff2600;
+
+    text-shadow:
+        2px 2px white;
+}
+
+.carro-caja {
+
+    font-size: 8rem;
+
+    margin-top: 40px;
+
+    filter:
+        drop-shadow(0 0 20px #ff2600);
+}
+
+.datos-carro {
+
+    text-align: left;
+
+    padding: 25px;
+
+    background: #111;
+
+    border-radius: 15px;
+
+    border-left:
+        4px solid #ff3b16;
+}
+
+.datos-carro p {
+
+    padding: 13px 0;
+
+    border-bottom:
+        1px solid #292929;
+
+    color: #ddd;
+}
+
+.datos-carro span {
+
+    display: inline-block;
+
+    min-width: 140px;
+
+    color: #ff5832;
+
+    font-size: 0.8rem;
+
+    font-weight: bold;
+}
+
+.nota {
+
+    color: #777;
+
+    font-size: 0.8rem;
+
+    margin-top: 20px;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   LISTA DE COSAS
+========================================================= */
+
+.lista-cosas {
+
+    width: min(850px, 95%);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 14px;
+
+    margin-top: 30px;
+}
+
+.cosa {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    text-align: left;
+
+    padding: 20px;
+
+    background: #111;
+
+    border-radius: 12px;
+
+    border-left:
+        4px solid #ff3b16;
+
+    transition: 0.3s;
+}
+
+.cosa:hover {
+
+    transform:
+        translateX(8px);
+
+    background: #161616;
+}
+
+.cosa span {
+
+    font-size: 1.3rem;
+
+    color: #ff3b16;
+
+    font-weight: 900;
+}
+
+.cosa strong {
+
+    color: #ddd;
+
+    line-height: 1.5;
+}
+
+.frase-grande {
+
+    width: min(700px, 95%);
+
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-top:
+        1px solid #333;
+
+    border-bottom:
+        1px solid #333;
+}
+
+.frase-grande span {
+
+    font-size: 2rem;
+}
+
+.frase-grande p {
+
+    margin-top: 10px;
+
+    color: #ccc;
+
+    font-style: italic;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CARRETERA
+========================================================= */
+
+.carretera {
+
+    width: min(950px, 95%);
+
+    height: 230px;
+
+    margin: 30px 0;
+
+    position: relative;
+
+    background: #101010;
+
+    border-top:
+        4px solid #444;
+
+    border-bottom:
+        4px solid #444;
+
+    overflow: hidden;
+}
+
+.linea-central {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 7px;
+
+    transform:
+        translateY(-50%);
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            white 0,
+            white 60px,
+            transparent 60px,
+            transparent 120px
+        );
+
+    animation:
+        carretera 1s linear infinite;
+}
+
+@keyframes carretera {
+
+    from {
+        background-position: 0;
+    }
+
+    to {
+        background-position: -120px;
+    }
+
+}
+
+.carro-carretera {
+
+    position: absolute;
+
+    left: 15%;
+
+    top: 42%;
+
+    font-size: 4rem;
+
+    animation:
+        avanzar 4s ease-in-out infinite alternate;
+}
+
+@keyframes avanzar {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(600px);
+    }
+
+}
+
+.estrella {
+
+    position: absolute;
+
+    top: 25px;
+
+    left: 20%;
+
+    font-size: 1.5rem;
+
+    animation:
+        parpadearEstrella 1.5s infinite alternate;
+}
+
+.estrella.dos {
+
+    left: 55%;
+
+    top: 45px;
+
+    animation-delay: 0.5s;
+}
+
+.estrella.tres {
+
+    left: 80%;
+
+    top: 20px;
+
+    animation-delay: 1s;
+}
+
+@keyframes parpadearEstrella {
+
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   CARTA PERSONAL
+========================================================= */
+
+.corazon {
+
+    font-size: 5rem;
+
+    filter:
+        drop-shadow(0 0 20px #ff2600);
+
+    animation:
+        latido 1s infinite;
+}
+
+@keyframes latido {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+
+}
+
+.carta-personal {
+
+    width: min(720px, 95%);
+
+    padding: 35px;
+
+    margin-top: 25px;
+
+    text-align: left;
+
+    line-height: 1.9;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191919,
+            #0b0b0b
+        );
+
+    border:
+        1px solid #3b3b3b;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 0 35px rgba(255, 40, 0, 0.12);
+}
+
+.carta-personal p {
+
+    margin-bottom: 14px;
+
+    color: #ddd;
+}
+
+.firma {
+
+    color: #ff5b30 !important;
+
+    font-size: 1.4rem;
+
+    font-weight: bold;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   PREGUNTA
+========================================================= */
+
+.misterio {
+
+    font-size: 5rem;
+
+    animation:
+        misterio 1.5s infinite alternate;
+}
+
+@keyframes misterio {
+
+    from {
+        transform: rotate(-5deg);
+    }
+
+    to {
+        transform: rotate(5deg);
+    }
+
+}
+
+.pregunta-box {
+
+    width: min(700px, 95%);
+
+    padding: 35px;
+
+    margin-top: 25px;
+
+    background: #101010;
+
+    border:
+        2px solid #ff3b16;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 40px rgba(255, 50, 0, 0.15);
+}
+
+.pregunta-principal {
+
+    font-size: 1.5rem;
+
+    color: #ddd;
+}
+
+.pregunta-secundaria {
+
+    font-size: 1.2rem;
+
+    color: #ff5931;
+
+    margin-top: 12px;
+
+    font-weight: bold;
+}
+
+.opciones {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+#respuesta {
+
+    min-height: 30px;
+
+    margin-top: 20px;
+
+    color: #ff663e;
+
+    font-weight: bold;
+
+    font-size: 1.1rem;
+}
+
+
+/* =========================================================
+   CASI META
+========================================================= */
+
+.luces-finales {
+
+    position: absolute;
+
+    top: 10%;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 6px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #ff2600 0,
+            #ff2600 30px,
+            transparent 30px,
+            transparent 60px
+        );
+
+    box-shadow:
+        0 0 20px #ff2600;
+}
+
+.carro-final,
+.carro-meta {
+
+    font-size: 6rem;
+
+    filter:
+        drop-shadow(0 0 25px #ff3500);
+
+    animation:
+        carroFinal 2s ease-in-out infinite alternate;
+}
+
+@keyframes carroFinal {
+
+    from {
+        transform: translateX(-15px);
+    }
+
+    to {
+        transform: translateX(15px);
+    }
+
+}
+
+.revelacion {
+
+    width: min(650px, 95%);
+
+    padding: 30px;
+
+    margin-top: 20px;
+
+    background: #111;
+
+    border-radius: 15px;
+
+    line-height: 1.8;
+}
+
+.revelacion p {
+
+    margin: 12px;
+
+    color: #ddd;
+}
+
+
+/* =========================================================
+   META FINAL
+========================================================= */
+
+#meta {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #421600,
+            #090909 55%,
+            #000
+        );
+}
+
+.trofeo {
+
+    font-size: 5rem;
+
+    filter:
+        drop-shadow(0 0 20px gold);
+
+    animation:
+        trofeo 2s infinite alternate;
+}
+
+@keyframes trofeo {
+
+    from {
+        transform:
+            rotate(-5deg)
+            scale(1);
+    }
+
+    to {
+        transform:
+            rotate(5deg)
+            scale(1.1);
+    }
+
+}
+
+.mensaje-final {
+
+    width: min(720px, 95%);
+
+    margin-top: 25px;
+
+    padding: 30px;
+
+    background:
+        rgba(20, 20, 20, 0.85);
+
+    border-radius: 15px;
+
+    line-height: 1.8;
+}
+
+.mensaje-final p {
+
+    color: #ddd;
+
+    margin: 12px 0;
+}
+
+.gran-final {
+
+    margin-top: 30px;
+
+    padding: 25px 40px;
+
+    border-top:
+        2px solid #ff3b16;
+
+    border-bottom:
+        2px solid #ff3b16;
+}
+
+.gran-final p {
+
+    color: #888;
+
+    letter-spacing: 3px;
+
+    margin: 8px 0;
+}
+
+.gran-final h3 {
+
+    font-size: 2rem;
+
+    color: #00ff62;
+
+    text-shadow:
+        0 0 15px #00ff62;
+}
+
+
+/* =========================================================
+   CONFETI
+========================================================= */
+
+#confeti {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 10 !important;
+}
+
+.confeti-pieza {
+
+    position: absolute;
+
+    top: -30px;
+
+    font-size: 1.5rem;
+
+    animation:
+        caer 3s linear forwards;
+}
+
+@keyframes caer {
+
+    from {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .coleccion {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .ficha-carro {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .lista-cosas {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .pantalla {
+
+        padding:
+            50px 15px;
+
+    }
+
+    h1 {
+
+        font-size: 2.2rem;
+
+    }
+
+    h2 {
+
+        font-size: 1rem;
+
+    }
+
+    .numero,
+    .numero-vuelta {
+
+        font-size: 2.5rem;
+
+        top: 15px;
+
+        right: 15px;
+
+    }
+
+    .coleccion {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .carta-momento {
+
+        min-height: 190px;
+
+    }
+
+    .pista {
+
+        height: 110px;
+
+    }
+
+    .carro-pista {
+
+        font-size: 3rem;
+
+    }
+
+    .carro-garaje {
+
+        font-size: 5rem;
+
+    }
+
+    .carro-caja {
+
+        font-size: 5rem;
+
+    }
+
+    .carro-final,
+    .carro-meta {
+
+        font-size: 4.5rem;
+
+    }
+
+    .carta-personal {
+
+        padding: 25px;
+
+    }
+
+    .pregunta-box {
+
+        padding: 25px 15px;
+
+    }
+
+    .opciones button {
+
+        width: 100%;
+
+    }
+
+    .datos-carro span {
+
+        min-width: 110px;
+
+    }
+
+    .carro-carretera {
+
+        animation:
+            avanzarMovil 3s ease-in-out infinite alternate;
+
+    }
+
+    @keyframes avanzarMovil {
+
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(180px);
+        }
+
+    }
+
+}
